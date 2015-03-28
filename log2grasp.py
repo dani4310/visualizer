@@ -42,7 +42,7 @@ for line in lines :
 		in_time  = (float(tick) + (float(tick_reload) - float(in_minitick))  /float(tick_reload)) / 100 * 1000;
 		#millisecond
 		
-		print('switch from %s to %s cost %f milliseconds' % (out_task, in_task,in_time-out_time))
+		print('switch from %s to %s cost %f ms' % (out_task, in_task,in_time-out_time))
 
 		event = {}
 		event['type'] = 'task out'
