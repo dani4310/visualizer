@@ -153,12 +153,19 @@ void queue_str_task(const char *str, int delay)
 
 void queue_str_task1(void *pvParameters)
 {
+//	while(1){}
 	queue_str_task("Hello 1\n\r", 200);
 }
 
 void queue_str_task2(void *pvParameters)
 {
+	//while(1){}
 	queue_str_task("Hello 2\n\r", 50);
+}
+
+void donothing(void *pvParameters)
+{
+	while(1){}
 }
 
 void serial_readwrite_task(void *pvParameters)
@@ -235,6 +242,10 @@ int main()
 	            (signed portCHAR *) "Serial Write 2",
 	            512 /* stack size */,
 	            NULL, tskIDLE_PRIORITY + 10, NULL);
+//	xTaskCreate(donothing,
+//	            (signed portCHAR *) "donothing",
+//	            512 /* stack size */,
+//	            NULL, tskIDLE_PRIORITY + 10, NULL);
 
 	/* Create a task to write messages from the queue to the RS232 port. */
 	xTaskCreate(rs232_xmit_msg_task,
@@ -247,7 +258,14 @@ int main()
 	            (signed portCHAR *) "Serial Read/Write",
 	            512 /* stack size */, NULL,
 	            tskIDLE_PRIORITY + 10, NULL);
-
+	xTaskCreate(donothing,
+	            (signed portCHAR *) "addtask1",
+	            512 /* stack size */, NULL,
+	            tskIDLE_PRIORITY + 11, NULL);
+	xTaskCreate(donothing,
+	            (signed portCHAR *) "addtask2",
+	            512 /* stack size */, NULL,
+	            tskIDLE_PRIORITY + 11, NULL);
 	/* Start running the tasks. */
 	vTaskStartScheduler();
 
