@@ -8,7 +8,7 @@
 TRACE_QUEUE = True
 TRACE_MUTEX = True
 TRACE_BINARY_SEMAPHORE = False
-TRACE_INTERRUPT = False
+TRACE_INTERRUPT = True
 
 log = open('log', 'r')
 lines = log.readlines()
