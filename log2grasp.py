@@ -19,7 +19,7 @@ mutexes = {}
 all_queues = {}
 binsems = {}
 queues = {}
-switchtime = open('switchtime', 'w')
+#switchtime = open('switchtime', 'w')
 for line in lines :
 	line = line.strip()
 	inst, args = line.split(' ', 1)
@@ -42,7 +42,7 @@ for line in lines :
 		in_time  = (float(tick) + (float(tick_reload) - float(in_minitick))  /float(tick_reload)) / 100 * 1000;
 		#millisecond
 		
-		switchtime.write('switch from %s to %s cost %f milliseconds\n' % (out_task, in_task,in_time-out_time))
+		print('switch from %s to %s cost %f milliseconds' % (out_task, in_task,in_time-out_time))
 
 		event = {}
 		event['type'] = 'task out'
@@ -250,4 +250,4 @@ for id in tasks :
 					(events[-1]['time'], id))
 
 grasp.close()
-switchtime.close()
+#switchtime.close()
